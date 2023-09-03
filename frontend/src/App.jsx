@@ -1,18 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <h1>PeerBlock Overflow</h1>
-      </div>
-    </>
+    <HashRouter>
+      <Routes>
+        <Route
+          path="/test"
+          element={
+            <>
+              <h1>Test</h1>
+            </>} />
+        <Route
+          path="/"
+          element={
+            <h1>Home</h1>} />
+      </Routes>
+    </HashRouter>
   )
 }
 
-export default App
+export default App;
