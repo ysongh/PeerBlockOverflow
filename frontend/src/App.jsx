@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ChakraProvider, Text } from '@chakra-ui/react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
 
 function App() {
 
