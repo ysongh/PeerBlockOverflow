@@ -5,11 +5,14 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 
 function App() {
-
+  const [ethAddress, setETHAddress] = useState('');
+  
   return (
     <ChakraProvider>
       <HashRouter>
-        <Navbar />
+        <Navbar
+          ethAddress={ethAddress}
+          setETHAddress={setETHAddress} />
         <Routes>
           <Route
             path="/test"
