@@ -3,6 +3,7 @@ import { ChakraProvider, Text } from '@chakra-ui/react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
+import CreatePost from './pages/CreatePost';
 
 function App() {
   const [ethAddress, setETHAddress] = useState('');
@@ -14,6 +15,9 @@ function App() {
           ethAddress={ethAddress}
           setETHAddress={setETHAddress} />
         <Routes>
+          <Route
+            path="/create-post"
+            element={<CreatePost/>} />
           <Route
             path="/test"
             element={

@@ -18,6 +18,7 @@ function Navbar({ ethAddress, setETHAddress }) {
             </Link>
           </Box>
           <Link as={ReactLink} to="/">Home</Link>
+          <Link as={ReactLink} to="/create-post">Create Post</Link>
           <Link as={ReactLink} to="/test">Test</Link>
           <Spacer />
           <Button onClick={connectMetamask}>
