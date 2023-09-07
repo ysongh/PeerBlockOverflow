@@ -3,6 +3,7 @@ import { ChakraProvider, Text } from '@chakra-ui/react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
+import Posts from './pages/Posts';
 import CreatePost from './pages/CreatePost';
 
 function App() {
@@ -26,8 +27,7 @@ function App() {
               </>} />
           <Route
             path="/"
-            element={
-              <Text fontSize="3rem">Home</Text>} />
+            element={<Posts />} />
         </Routes>
       </HashRouter>
     </ChakraProvider>
