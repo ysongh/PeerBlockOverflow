@@ -7,11 +7,13 @@ function CreateCoupon() {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [tags, setTags] = useState('');
+
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     try{
-      console.log(title, description);
+      console.log(title, description, tags);
     } catch(error) {
      console.error(error);
      setLoading(false);
@@ -30,6 +32,10 @@ function CreateCoupon() {
           <FormControl mb='3'>
             <FormLabel htmlFor='description'>Description</FormLabel>
             <Input id='description' onChange={(e) => setDescription(e.target.value)}/>
+          </FormControl>
+          <FormControl mb='3'>
+            <FormLabel htmlFor='tag'>Tag</FormLabel>
+            <Input id='tag' onChange={(e) => setTags(e.target.value)}/>
           </FormControl>
           {loading
             ? <Spinner color='orange' />
