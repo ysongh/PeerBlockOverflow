@@ -12,12 +12,12 @@ function Posts() {
         <Box borderWidth='1px' borderRadius='lg' borderColor='green' overflow='hidden' p='5' width='500px' mt='5'>
           <Heading textAlign="center" fontSize="3xl" mb="4">Title</Heading>
           <Text textAlign="center" fontSize="xl" mb="4">Detail....</Text>
-          <Button mt="4" onClick={() => navigate(`/}`)}>View</Button>
+          <Button mt="4" onClick={() => navigate(`/post`)}>View</Button>
         </Box>
         <Box borderWidth='1px' borderRadius='lg' borderColor='green' overflow='hidden' p='5' width='500px' mt='5'>
           <Heading textAlign="center" fontSize="3xl" mb="4">Title</Heading>
           <Text textAlign="center" fontSize="xl" mb="4">Detail....</Text>
-          <Button mt="4" onClick={() => navigate(`/}`)}>View</Button>
+          <Button mt="4" onClick={() => navigate(`/post`)}>View</Button>
         </Box>
       </SimpleGrid>
     </Container>

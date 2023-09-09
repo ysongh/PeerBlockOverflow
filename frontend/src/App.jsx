@@ -4,6 +4,7 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
 import Posts from './pages/Posts';
+import PostDetail from './pages/PostDetail';
 import CreatePost from './pages/CreatePost';
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
           <Route
             path="/create-post"
             element={<CreatePost/>} />
+          <Route
+            path="/post"
+            element={<PostDetail/>} />
           <Route
             path="/test"
             element={
