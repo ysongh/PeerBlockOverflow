@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, SimpleGrid, Box, Heading, InputGroup, Input, InputRightElement, Text, Tag, Button } from '@chakra-ui/react';
+import { SearchIcon } from "@chakra-ui/icons";
 
 function Posts() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ function Posts() {
       <InputGroup bg='white' mt='4'>
         <Input placeholder='Search' value={search} onChange={(e) => setSearch(e.target.value)}/>
         <InputRightElement>
-          <Text mr="2" color="blue" fontWeight="bold">Find</Text>
+          <SearchIcon />
         </InputRightElement>
       </InputGroup>
       <SimpleGrid minChildWidth='300px' spacing='5px'>
