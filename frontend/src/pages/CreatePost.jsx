@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormControl, FormLabel, Box, ButtonGroup, Spinner, Input, Heading, Button } from '@chakra-ui/react';
+import { FormControl, FormLabel, Box, ButtonGroup, Spinner, Input, Textarea, Heading, Button } from '@chakra-ui/react';
 import { Web3Storage } from 'web3.storage';
 
 import { WEB3STORAGE_APIKEY } from '../../keys';
@@ -49,7 +49,7 @@ function CreateCoupon() {
           </FormControl>
           <FormControl mb='3'>
             <FormLabel htmlFor='description'>Description</FormLabel>
-            <Input id='description' onChange={(e) => setDescription(e.target.value)}/>
+            <Textarea id='description' rows={7} onChange={(e) => setDescription(e.target.value)}/>
           </FormControl>
           <FormControl mb='3'>
             <FormLabel htmlFor='tag'>Tag</FormLabel>
