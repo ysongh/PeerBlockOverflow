@@ -1,11 +1,13 @@
-const hre = require("hardhat");
-
 async function main() {
-  const daoDealClient = await hre.ethers.deployContract("DaoDealClient");
+  const [deployer] = await ethers.getSigners();
 
-  await daoDealClient.waitForDeployment();
+  // const daoDealClient = await hre.ethers.deployContract("DaoDealClient");
+  // await daoDealClient.waitForDeployment();
+  // console.log(`Contract deploy to ${daoDealClient.target}`);
 
-  console.log(`Contract deploy to ${daoDealClient.target}`);
+  const peerBlockOverflow = await ethers.deployContract("PeerBlockOverflow");
+  await peerBlockOverflow.waitForDeployment();
+  console.log(`Contract deploy to ${peerBlockOverflow.target}`);
 }
 
 main().catch((error) => {
