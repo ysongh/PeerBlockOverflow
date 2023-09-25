@@ -9,7 +9,7 @@ function Posts() {
   const [search, setSearch] = useState("");
 
   return (
-    <Container maxW='1000px'>
+    <Container maxW='1100px'>
       <Heading>Find Posts</Heading>
       <InputGroup bg='white' mt='4'>
         <Input placeholder='Search' value={search} onChange={(e) => setSearch(e.target.value)}/>
