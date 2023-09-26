@@ -7,7 +7,7 @@ import { WEB3STORAGE_APIKEY } from '../../keys';
 
 const client = new Web3Storage({ token: WEB3STORAGE_APIKEY });
 
-function CreateCoupon() {
+function CreateCoupon({ contract }) {
   const router = useNavigate();
 
   const [title, setTitle] = useState('');
@@ -32,6 +32,10 @@ function CreateCoupon() {
       })
 
       console.log(`https://dweb.link/ipfs/${cid}`);
+      const fullURL = `https://dweb.link/ipfs/${cid}`;
+      const transaction = await contract.addPost(fullURL);
+      const tx = await transaction.wait();
+      console.log(tx);
     } catch(error) {
      console.error(error);
      setLoading(false);
