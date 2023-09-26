@@ -2,14 +2,19 @@ import { Link as ReactLink } from 'react-router-dom';
 import { Container, Box, Flex, Heading, Spacer, Button, Link } from '@chakra-ui/react';
 import { ethers } from 'ethers';
 
-function Navbar({ ethAddress, setETHAddress }) {
+import PeerBlockOverflow from "../../artifacts/contracts/PeerBlockOverflow.sol/PeerBlockOverflow.json";
+
+const CALIBRATION_CONTRACT_ADDRESS = "0xFda2FCAB7c8c2FDB3Ef69C37Ee94f1e7A94f0eD3";
+
+function Navbar({ ethAddress, setETHAddress, setContract }) {
 
   const connectMetamask = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     setETHAddress(accounts[0]);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    console.log(signer);
+    const c = new ethers.Contract(CALIBRATION_CONTRACT_ADDRESS, PeerBlockOverflow.abi, signer);
+    setContract(c);
   }
 
   return (
