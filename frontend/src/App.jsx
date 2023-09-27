@@ -33,7 +33,7 @@ function App() {
               </>} />
           <Route
             path="/"
-            element={<Posts />} />
+            element={<Posts contract={contract} />} />
         </Routes>
       </HashRouter>
     </ChakraProvider>
