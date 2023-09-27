@@ -42,7 +42,7 @@ function Posts({ contract }) {
             <Text textAlign="center" fontSize="xl" mb="4">{p.description}</Text>
             <Tag>{p.tags}</Tag>
             <br />
-            <Button mt="4" onClick={() => navigate(`/post`)}>View</Button>
+            <Button mt="4" onClick={() => navigate(`/post/${p.id}`)}>View</Button>
           </Box>
         ))}
       </SimpleGrid>

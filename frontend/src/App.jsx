@@ -23,8 +23,8 @@ function App() {
             path="/create-post"
             element={<CreatePost contract={contract} />} />
           <Route
-            path="/post"
-            element={<PostDetail/>} />
+            path="/post/:id"
+            element={<PostDetail contract={contract} />} />
           <Route
             path="/test"
             element={
