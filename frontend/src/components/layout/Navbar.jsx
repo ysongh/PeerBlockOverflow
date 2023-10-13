@@ -5,6 +5,7 @@ import { ethers } from 'ethers';
 import PeerBlockOverflow from "../../artifacts/contracts/PeerBlockOverflow.sol/PeerBlockOverflow.json";
 
 const CALIBRATION_CONTRACT_ADDRESS = "0xFda2FCAB7c8c2FDB3Ef69C37Ee94f1e7A94f0eD3";
+const LOCALHOST_CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 function Navbar({ ethAddress, setETHAddress, setContract }) {
 
@@ -13,7 +14,7 @@ function Navbar({ ethAddress, setETHAddress, setContract }) {
     setETHAddress(accounts[0]);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const c = new ethers.Contract(CALIBRATION_CONTRACT_ADDRESS, PeerBlockOverflow.abi, signer);
+    const c = new ethers.Contract(LOCALHOST_CONTRACT_ADDRESS, PeerBlockOverflow.abi, signer);
     setContract(c);
   }
 

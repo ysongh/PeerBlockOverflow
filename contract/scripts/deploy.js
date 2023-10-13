@@ -1,15 +1,17 @@
+const hre = require("hardhat");
+
 async function main() {
-  const [deployer] = await ethers.getSigners();
+  const peerBlockOverflow = await hre.ethers.deployContract("PeerBlockOverflow");
 
-  // const daoDealClient = await hre.ethers.deployContract("DaoDealClient");
-  // await daoDealClient.waitForDeployment();
-  // console.log(`Contract deploy to ${daoDealClient.target}`);
-
-  const peerBlockOverflow = await ethers.deployContract("PeerBlockOverflow");
   await peerBlockOverflow.waitForDeployment();
-  console.log(`Contract deploy to ${peerBlockOverflow.target}`);
+
+  console.log(
+    `PeerBlockOverflow deployed to ${peerBlockOverflow.target}`
+  );
 }
 
+// We recommend this pattern to be able to use async/await everywhere
+// and properly handle errors.
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
