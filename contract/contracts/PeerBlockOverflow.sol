@@ -12,13 +12,14 @@ contract PeerBlockOverflow {
     }
     mapping(address => uint[]) public ratings;
 
-    event rated(address to, uint num, address from);
+    event NewPost(uint id, string cid, address from);
 
     constructor() {}
 
     function addPost(string memory cid) external {
         posts.push(Post(postCount, cid, msg.sender));
         postCount++;
+        emit NewPost(postCount, cid, msg.sender);
     }
 
     function getPosts() external view returns (Post[] memory) {
