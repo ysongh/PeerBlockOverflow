@@ -11,6 +11,9 @@ async function main() {
 
   await peerBlockOverflow.addPost("https://dweb.link/ipfs/bafybeigd2tft4h65d2anbuh6kkdps4d7mhqcs2alwhmogqycryf33s3bvq");
   console.log(`Post #1 is created`);
+
+  await peerBlockOverflow.addComment("0", "https://dweb.link/ipfs/bafybeigd2tft4h65d2anbuh6kkdps4d7mhqcs2alwhmogqycryf33s3bvq");
+  console.log(`Comment #1 is created`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

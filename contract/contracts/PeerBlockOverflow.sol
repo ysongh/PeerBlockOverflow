@@ -10,7 +10,13 @@ contract PeerBlockOverflow {
         string cid;
         address from;
     }
-    mapping(address => uint[]) public ratings;
+
+    struct Comment{
+        string cid;
+        address from;
+    }
+
+    mapping(uint => Comment[]) public comments;
 
     event NewPost(uint id, string cid, address from);
 
@@ -22,7 +28,15 @@ contract PeerBlockOverflow {
         emit NewPost(postCount, cid, msg.sender);
     }
 
+    function addComment(uint postId, string memory cid) external {
+        comments[postId].push(Comment(cid, msg.sender));
+    }
+
     function getPosts() external view returns (Post[] memory) {
         return posts;
+    }
+
+    function getComments(uint postId) external view returns (Comment[] memory) {
+        return comments[postId];
     }
 }
