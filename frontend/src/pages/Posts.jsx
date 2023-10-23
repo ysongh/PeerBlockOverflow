@@ -11,16 +11,21 @@ function Posts({ contract }) {
 
   useEffect(() => {
     const getPosts = async () => {
-      const newPosts = await contract.getPosts();
-
-      const temp = [];
-      for (let p of newPosts) {
-        const res = await fetch(p.cid + "/postData.json");
-        let postData = await res.json();
-        postData.id = p.id.toString();
-        temp.push(postData);
+      try{
+        console.log(contract)
+        const newPosts = await contract.getPosts();
+  
+        const temp = [];
+        for (let p of newPosts) {
+          const res = await fetch(p.cid + "/postData.json");
+          let postData = await res.json();
+          postData.id = p.id.toString();
+          temp.push(postData);
+        }
+        setPosts(temp);
+      } catch (error) {
+        console.log(error)
       }
-      setPosts(temp);
     }
 
     if (contract) getPosts();
