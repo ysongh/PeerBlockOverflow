@@ -45,7 +45,7 @@ function CreateCoupon({ contract }) {
   return (
     <div>
       <center>
-        <Box borderWidth='1px' borderRadius='lg' borderColor='orange' overflow='hidden' p='5' width='500px' mt='5'>
+        <Box borderWidth='1px' borderRadius='lg' borderColor='blue.400' overflow='hidden' p='5' width='500px' mt='5'>
           <Heading fontSize='2xl' mb='3'>Create Post</Heading>
           <FormControl mb='3'>
             <FormLabel htmlFor='title'>Title</FormLabel>
@@ -60,9 +60,9 @@ function CreateCoupon({ contract }) {
             <Input id='tag' onChange={(e) => setTags(e.target.value)}/>
           </FormControl>
           {loading
-            ? <Spinner color='orange' />
+            ? <Spinner color='blue' />
             : <ButtonGroup spacing='6'>
-                <Button colorScheme='orange' onClick={handleSubmit}>
+                <Button colorScheme='blue' onClick={handleSubmit}>
                   Create
                 </Button>
                 <Button onClick={() => router.push('/')}>Cancel</Button>

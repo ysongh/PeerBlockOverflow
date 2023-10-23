@@ -42,7 +42,7 @@ function Posts({ contract }) {
       </InputGroup>
       <SimpleGrid minChildWidth='300px' spacing='5px'>
         {posts.map(p => (
-          <Box key={p.id} borderWidth='1px' borderRadius='lg' borderColor='green' overflow='hidden' p='5' mt='5'>
+          <Box key={p.id} borderWidth='1px' borderRadius='lg' borderColor='blue.400' overflow='hidden' p='5' mt='5'>
             <Heading textAlign="center" fontSize="3xl" mb="4">{p.title}</Heading>
             <Text textAlign="center" fontSize="xl" mb="4">{p.description}</Text>
             <Tag>{p.tags}</Tag>

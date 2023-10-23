@@ -23,7 +23,7 @@ function PostDetail({ contract }) {
   return (
     <Container maxW='1000px'>
       <Center>
-        <Box borderWidth='1px' borderRadius='lg' borderColor='green' overflow='hidden' p='5' width='500px' mt='5'>
+        <Box borderWidth='1px' borderRadius='lg' borderColor='blue.400' overflow='hidden' p='5' width='500px' mt='5'>
           <Heading textAlign="center" fontSize="3xl" mb="4">{post.title}</Heading>
           <p>{post.description}</p>
           <br />

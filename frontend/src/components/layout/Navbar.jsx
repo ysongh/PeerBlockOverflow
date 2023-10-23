@@ -24,7 +24,7 @@ function Navbar({ ethAddress, setETHAddress, setContract }) {
         <Flex minWidth='max-content' alignItems='center' gap='2'>
           <Box mr="4">
             <Link as={ReactLink} to="/">
-              <Heading color="green" mt="3" mb="5">PeerBlock Overflow</Heading>
+              <Heading color="blue.400" mt="3" mb="5">PeerBlock Overflow</Heading>
             </Link>
           </Box>
           <Link as={ReactLink} to="/">Home</Link>
