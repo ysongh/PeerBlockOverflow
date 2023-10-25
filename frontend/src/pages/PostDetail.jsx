@@ -26,7 +26,7 @@ function PostDetail({ contract, ethAddress }) {
     if (contract) getPost();
   }, [contract])
 
-  const handleSubmit = async () => {
+  const createComment = async () => {
     try{
       const commentData = JSON.stringify({ description, from: ethAddress });
       const blob = new Blob([commentData], {type: "text/plain"});
@@ -68,7 +68,7 @@ function PostDetail({ contract, ethAddress }) {
             <FormLabel htmlFor='description'>Description</FormLabel>
             <Textarea id='description' rows={7} onChange={(e) => setDescription(e.target.value)}/>
           </FormControl>
-          <Button colorScheme='blue' onClick={handleSubmit}>
+          <Button colorScheme='blue' onClick={createComment}>
             Add
           </Button>
         </Box>

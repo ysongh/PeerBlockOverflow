@@ -16,7 +16,7 @@ function CreateCoupon({ contract }) {
 
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  const createPost = async () => {
     try{
       console.log(title, description, tags);
       const postData = JSON.stringify({ title, description, tags });
@@ -62,7 +62,7 @@ function CreateCoupon({ contract }) {
           {loading
             ? <Spinner color='blue' />
             : <ButtonGroup spacing='6'>
-                <Button colorScheme='blue' onClick={handleSubmit}>
+                <Button colorScheme='blue' onClick={createPost}>
                   Create
                 </Button>
                 <Button onClick={() => router.push('/')}>Cancel</Button>
