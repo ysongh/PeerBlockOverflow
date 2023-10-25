@@ -26,12 +26,6 @@ function App() {
             path="/post/:id"
             element={<PostDetail contract={contract} ethAddress={ethAddress} />} />
           <Route
-            path="/test"
-            element={
-              <>
-                <h1>Test</h1>
-              </>} />
-          <Route
             path="/"
             element={<Posts contract={contract} />} />
         </Routes>

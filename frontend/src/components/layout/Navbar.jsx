@@ -29,7 +29,6 @@ function Navbar({ ethAddress, setETHAddress, setContract }) {
           </Box>
           <Link as={ReactLink} to="/">Home</Link>
           <Link as={ReactLink} to="/create-post">Create Post</Link>
-          <Link as={ReactLink} to="/test">Test</Link>
           <Spacer />
           <Button onClick={connectMetamask}>
             {ethAddress ? ethAddress.slice(0, 5) + "..." + ethAddress.slice(37, 42) : 'Connect Wallet'}
