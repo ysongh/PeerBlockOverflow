@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Center, Box, Heading, Tag, FormControl, FormLabel, Textarea, Button } from '@chakra-ui/react';
+import { Container, SimpleGrid, Center, Box, Heading, Text, Tag, FormControl, FormLabel, Textarea, Button } from '@chakra-ui/react';
 import { Web3Storage } from 'web3.storage';
 
 import { WEB3STORAGE_APIKEY } from '../../keys';
@@ -11,6 +11,7 @@ function PostDetail({ contract, ethAddress }) {
   const { id } = useParams();
 
   const [post, setPost] = useState({});
+  const [comments, setComments] = useState([]);
   const [description, setDescription] = useState('');
   
   useEffect(() => {
@@ -24,6 +25,26 @@ function PostDetail({ contract, ethAddress }) {
     }
 
     if (contract) getPost();
+  }, [contract])
+
+  useEffect(() => {
+    const getComments = async () => {
+      try{
+        const newComments = await contract.getComments(id);
+  
+        const temp = [];
+        for (let c of newComments) {
+          const res = await fetch(c.cid + "/commentData.json");
+          let commentData = await res.json();
+          temp.push(commentData);
+        }
+        setComments(temp);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    if (contract) getComments();
   }, [contract])
 
   const createComment = async () => {
@@ -73,6 +94,14 @@ function PostDetail({ contract, ethAddress }) {
           </Button>
         </Box>
       </Center>
+      <SimpleGrid minChildWidth='300px' spacing='5px'>
+        {comments.map((c, i) => (
+          <Box key={i} borderWidth='1px' borderRadius='lg' borderColor='blue.400' overflow='hidden' p='5' mt='5'>
+            <Heading textAlign="center" fontSize="3xl" mb="4">{c.from}</Heading>
+            <Text textAlign="center" fontSize="xl" mb="4">{c.description}</Text>
+          </Box>
+        ))}
+      </SimpleGrid>
     </Container>
   )
 }
