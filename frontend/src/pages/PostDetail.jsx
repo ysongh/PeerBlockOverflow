@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, SimpleGrid, Center, Box, Heading, Text, Tag, FormControl, FormLabel, Textarea, Button } from '@chakra-ui/react';
+import { Container, Center, Box, Heading, Text, Tag, FormControl, FormLabel, Card, CardHeader, CardBody, Stack, StackDivider, Textarea, Button } from '@chakra-ui/react';
 import { Web3Storage } from 'web3.storage';
 
 import { WEB3STORAGE_APIKEY } from '../../keys';
@@ -94,14 +94,26 @@ function PostDetail({ contract, ethAddress }) {
           </Button>
         </Box>
       </Center>
-      <SimpleGrid minChildWidth='300px' spacing='5px'>
-        {comments.map((c, i) => (
-          <Box key={i} borderWidth='1px' borderRadius='lg' borderColor='blue.400' overflow='hidden' p='5' mt='5'>
-            <Heading textAlign="center" fontSize="3xl" mb="4">{c.from}</Heading>
-            <Text textAlign="center" fontSize="xl" mb="4">{c.description}</Text>
-          </Box>
-        ))}
-      </SimpleGrid>
+      <Card>
+        <CardHeader>
+          <Heading size='md'>Comments</Heading>
+        </CardHeader>
+
+        <CardBody>
+          <Stack divider={<StackDivider />} spacing='4'>
+            {comments.map((c, i) => (
+              <Box key={i}>
+                <Heading size='xs' textTransform='uppercase'>
+                  {c.from}
+                </Heading>
+                <Text pt='2' fontSize='sm'>
+                  {c.description}
+                </Text>
+              </Box>
+            ))}
+          </Stack>
+        </CardBody>
+      </Card>
     </Container>
   )
 }
