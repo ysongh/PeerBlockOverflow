@@ -9,7 +9,7 @@ async function main() {
     `PeerBlockOverflow deployed to ${peerBlockOverflow.target}`
   );
 
-  await peerBlockOverflow.addPost("https://dweb.link/ipfs/bafybeigd2tft4h65d2anbuh6kkdps4d7mhqcs2alwhmogqycryf33s3bvq");
+  await peerBlockOverflow.addPost("https://dweb.link/ipfs/bafybeibvax344ma6wgk7r2vnlf2yf7jpneos46l52ggxahftg6mgi2ch6e");
   console.log(`Post #1 is created`);
 
   await peerBlockOverflow.addPost("https://dweb.link/ipfs/bafybeibwhhg542rtmupu2kpuemxvfel7jvdqfvdi4xm4wpyi5j5qcfb54m");

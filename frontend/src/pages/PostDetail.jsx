@@ -80,6 +80,7 @@ function PostDetail({ contract, ethAddress }) {
           <p>{post.description}</p>
           <br />
           <Tag>{post.tags}</Tag>
+          <Text mt="2" textAlign="right">{post.from}</Text>
         </Box>
       </Center>
       <Center>

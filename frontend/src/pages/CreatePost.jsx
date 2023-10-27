@@ -7,7 +7,7 @@ import { WEB3STORAGE_APIKEY } from '../../keys';
 
 const client = new Web3Storage({ token: WEB3STORAGE_APIKEY });
 
-function CreateCoupon({ contract }) {
+function CreateCoupon({ contract, ethAddress }) {
   const router = useNavigate();
 
   const [title, setTitle] = useState('');
@@ -19,7 +19,7 @@ function CreateCoupon({ contract }) {
   const createPost = async () => {
     try{
       console.log(title, description, tags);
-      const postData = JSON.stringify({ title, description, tags });
+      const postData = JSON.stringify({ title, description, tags, from: ethAddress });
       const blob = new Blob([postData], {type: "text/plain"});
       const postDataFile = new File([ blob ], 'postData.json');
 
