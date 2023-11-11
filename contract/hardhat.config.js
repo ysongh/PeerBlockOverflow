@@ -20,6 +20,13 @@ module.exports = {
       chainId: 10200,
       gasPrice: 8000000000
     },
+    // npx hardhat run scripts/deploy.js --network mumbai
+    mumbai: {
+      url: `https://rpc-mumbai.maticvigil.com/`,
+      accounts: [process.env.PRIVATEKEY],
+      chainId: 80001,
+      gasPrice: 8000000000
+    },
   },
   paths: {
     artifacts: '../frontend/src/artifacts',
