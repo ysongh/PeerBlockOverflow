@@ -31,7 +31,7 @@ function Navbar({ ethAddress, setETHAddress, setContract }) {
           <Link as={ReactLink} to="/">Home</Link>
           <Link as={ReactLink} to="/create-post">Create Post</Link>
           <Spacer />
-          <p><Badge bgColor="#ff99fe" fontSize='.9rem'>Mumbai</Badge></p>
+          {ethAddress && <p><Badge bgColor="#ff99fe" fontSize='.9rem'>Mumbai</Badge></p>}
           <Button onClick={connectMetamask}>
             {ethAddress ? ethAddress.slice(0, 5) + "..." + ethAddress.slice(37, 42) : 'Connect Wallet'}
           </Button>
