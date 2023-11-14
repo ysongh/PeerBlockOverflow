@@ -15,6 +15,7 @@ dist-ssr
 *.local
 yarn.lock
 keys.js
+/tests
 
 # Editor directories and files
 .vscode/*

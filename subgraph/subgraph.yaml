@@ -1,0 +1,23 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: PeerBlockOverflow
+    network: mumbai
+    source:
+      address: "0x1db889583773d27aB583e5531E6FB8F26CE0dDC8"
+      abi: PeerBlockOverflow
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - NewPost
+      abis:
+        - name: PeerBlockOverflow
+          file: ./abis/PeerBlockOverflow.json
+      eventHandlers:
+        - event: NewPost(uint256,string,address)
+          handler: handleNewPost
+      file: ./src/peer-block-overflow.ts

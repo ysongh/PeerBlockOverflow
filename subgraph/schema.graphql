@@ -1,0 +1,9 @@
+type NewPost @entity(immutable: true) {
+  id: Bytes!
+  id: BigInt! # uint256
+  cid: String! # string
+  from: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
