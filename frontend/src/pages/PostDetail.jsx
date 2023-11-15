@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Center, Box, Heading, Text, Tag, FormControl, FormLabel, Card, CardHeader, CardBody, Stack, StackDivider, Textarea, Button } from '@chakra-ui/react';
+import { Container, Flex, Box, Heading, Text, Tag, FormControl, FormLabel, Card, CardHeader, CardBody, Stack, StackDivider, Textarea, Button } from '@chakra-ui/react';
 import { Web3Storage } from 'web3.storage';
 
 import { WEB3STORAGE_APIKEY } from '../../keys';
@@ -74,17 +74,15 @@ function PostDetail({ contract, ethAddress }) {
 
   return (
     <Container maxW='1000px'>
-      <Center>
-        <Box borderWidth='1px' borderRadius='lg' borderColor='blue.400' overflow='hidden' p='5' width='500px' mt='5'>
-          <Heading textAlign="center" fontSize="3xl" mb="4">{post.title}</Heading>
+      <Flex borderWidth='1px' borderRadius='lg' borderColor='blue.400' overflow='hidden' p='5' mt='5'>
+        <Box flex={1}>
+          <Heading fontSize="3xl" mb="4">{post.title}</Heading>
           <p>{post.description}</p>
           <br />
           <Tag>{post.tags}</Tag>
-          <Text mt="2" textAlign="right">{post.from}</Text>
+          <Text mt="2">{post.from}</Text>
         </Box>
-      </Center>
-      <Center>
-        <Box borderWidth='1px' borderRadius='lg' borderColor='blue.400' overflow='hidden' p='5' width='500px' mt='5'>
+        <Box flex={1}>
           <Heading fontSize='2xl' mb='3'>Add Comment</Heading>
           <FormControl mb='3'>
             <FormLabel htmlFor='description'>Description</FormLabel>
@@ -94,7 +92,7 @@ function PostDetail({ contract, ethAddress }) {
             Add
           </Button>
         </Box>
-      </Center>
+      </Flex>
       <Card>
         <CardHeader>
           <Heading size='md'>Comments</Heading>
