@@ -31,5 +31,10 @@ module.exports = {
   paths: {
     artifacts: '../frontend/src/artifacts',
     cache: '../frontend/src/cache',
-  }
+  },
+  verify: {
+    etherscan: {
+      apiKey: `${process.env.ETHERSCAN_APIKEY}`,
+    },
+  },
 };

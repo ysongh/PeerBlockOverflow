@@ -18,7 +18,7 @@ contract PeerBlockOverflow {
 
     mapping(uint => Comment[]) public comments;
 
-    event NewPost(uint id, string cid, address from);
+    event NewPost(uint indexed id, string cid, address from);
 
     constructor() {}
 
