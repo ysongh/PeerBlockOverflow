@@ -27,6 +27,13 @@ module.exports = {
       chainId: 80001,
       gasPrice: 8000000000
     },
+    // npx hardhat run scripts/deploy.js --network fuji
+    fuji: {
+      url: "https://api.avax-test.network/ext/bc/C/rpc",
+      accounts: [process.env.PRIVATEKEY],
+      chainId: 43113,
+      gasPrice: 25000000000
+    },
   },
   paths: {
     artifacts: '../frontend/src/artifacts',
