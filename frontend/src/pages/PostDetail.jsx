@@ -83,10 +83,11 @@ function PostDetail({ contract, ethAddress }) {
           <Text mt="2">{post.from}</Text>
         </Box>
         <Box flex={1}>
-          <Heading fontSize='2xl' mb='3'>Add Comment</Heading>
           <FormControl mb='3'>
-            <FormLabel htmlFor='description'>Description</FormLabel>
-            <Textarea id='description' rows={7} onChange={(e) => setDescription(e.target.value)}/>
+            <FormLabel htmlFor='description' fontWeight="700">
+              Add Comment
+            </FormLabel>
+            <Textarea id='description' rows={7} onChange={(e) => setDescription(e.target.value)} />
           </FormControl>
           <Button colorScheme='blue' onClick={createComment}>
             Add
