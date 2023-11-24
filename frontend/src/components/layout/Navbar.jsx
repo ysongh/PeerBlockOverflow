@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link as ReactLink } from 'react-router-dom';
 import { Container, Box, Flex, Heading, Spacer, Badge, Button, Link } from '@chakra-ui/react';
 import { ethers } from 'ethers';
@@ -9,11 +10,15 @@ import PeerBlockOverflow from "../../artifacts/contracts/PeerBlockOverflow.sol/P
 const MUMBAI_CONTRACT_ADDRESS = "0x1db889583773d27aB583e5531E6FB8F26CE0dDC8";
 
 function Navbar({ ethAddress, setETHAddress, setContract }) {
+  const [networkName, setnetworkName] = useState("");
 
   const connectMetamask = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     setETHAddress(accounts[0]);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const { name, chainId } = await provider.getNetwork();
+    console.log(name, chainId);
+    setnetworkName(name);
     const signer = provider.getSigner();
     const c = new ethers.Contract(MUMBAI_CONTRACT_ADDRESS, PeerBlockOverflow.abi, signer);
     setContract(c);
@@ -31,7 +36,7 @@ function Navbar({ ethAddress, setETHAddress, setContract }) {
           <Link as={ReactLink} to="/">Home</Link>
           <Link as={ReactLink} to="/create-post">Create Post</Link>
           <Spacer />
-          {ethAddress && <p><Badge bgColor="#ff99fe" fontSize='.9rem'>Mumbai</Badge></p>}
+          {networkName && <p><Badge bgColor="#ff99fe" fontSize='.9rem'>{networkName}</Badge></p>}
           <Button onClick={connectMetamask}>
             {ethAddress ? ethAddress.slice(0, 5) + "..." + ethAddress.slice(37, 42) : 'Connect Wallet'}
           </Button>
