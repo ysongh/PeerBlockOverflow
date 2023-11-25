@@ -1,7 +1,17 @@
 const hre = require("hardhat");
 
 async function main() {
-  const peerBlockOverflow = await hre.ethers.deployContract("PeerBlockOverflow");
+  // Mumbai testnet
+  // Router address => 0x70499c328e1e2a3c41108bd3730f6670a44595d1
+  // LINK token => 0x326C977E6efc84E512bB9C30f76E30c160eD06FB
+
+  // Fuji testnet
+  // Router address => 0x554472a2720e5e7d5d3c817529aba05eed5f82d8
+  // LINK token => 0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846
+
+  const _router = "0x70499c328e1e2a3c41108bd3730f6670a44595d1";
+  const _link = "0x326C977E6efc84E512bB9C30f76E30c160eD06FB";
+  const peerBlockOverflow = await hre.ethers.deployContract("PeerBlockOverflow", [_router, _link]);
 
   await peerBlockOverflow.waitForDeployment();
 
