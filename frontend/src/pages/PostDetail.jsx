@@ -94,7 +94,7 @@ function PostDetail({ contract, ethAddress }) {
           </Button>
         </Box>
       </Flex>
-      <Card>
+      <Card mt="5">
         <CardHeader>
           <Heading size='md'>Comments</Heading>
         </CardHeader>
