@@ -52,7 +52,7 @@ contract PeerBlockOverflow is OwnerIsCreator, CCIPReceiver {
 
     /// @param _router The address of the router contract.
     /// @param _link The address of the link contract.
-    constructor(address _router, address _link) CCIPReceiver(router) {
+    constructor(address _router, address _link) CCIPReceiver(_router) {
         s_router = IRouterClient(_router);
         s_linkToken = LinkTokenInterface(_link);
     }
