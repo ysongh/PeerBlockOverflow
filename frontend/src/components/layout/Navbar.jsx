@@ -7,7 +7,8 @@ import PeerBlockOverflow from "../../artifacts/contracts/PeerBlockOverflow.sol/P
 
 // const CALIBRATION_CONTRACT_ADDRESS = "0xFda2FCAB7c8c2FDB3Ef69C37Ee94f1e7A94f0eD3";
 // const LOCALHOST_CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-const MUMBAI_CONTRACT_ADDRESS = "0x1db889583773d27aB583e5531E6FB8F26CE0dDC8";
+const MUMBAI_CONTRACT_ADDRESS = "0x6C43d2EC6A277E215269895CEf85875e719C09E1";
+const SEPOLIA_CONTRACT_ADDRESS = "0xB2e0621213dD162a1BE0eAf42452306EF2Af66dc"
 
 function Navbar({ ethAddress, setETHAddress, setContract }) {
   const [networkName, setnetworkName] = useState("");
@@ -20,8 +21,14 @@ function Navbar({ ethAddress, setETHAddress, setContract }) {
     console.log(name, chainId);
     setnetworkName(name);
     const signer = provider.getSigner();
-    const c = new ethers.Contract(MUMBAI_CONTRACT_ADDRESS, PeerBlockOverflow.abi, signer);
-    setContract(c);
+    if (chainId === 11155111) {
+      const c = new ethers.Contract(SEPOLIA_CONTRACT_ADDRESS, PeerBlockOverflow.abi, signer);
+      setContract(c);
+    }
+    else if (chainId === 80001) {
+      const c = new ethers.Contract(MUMBAI_CONTRACT_ADDRESS, PeerBlockOverflow.abi, signer);
+      setContract(c);
+    }
   }
 
   return (
