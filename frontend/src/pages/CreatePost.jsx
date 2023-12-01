@@ -16,23 +16,27 @@ function CreateCoupon({ contract, ethAddress }) {
 
   const [loading, setLoading] = useState(false);
 
+  const uploadToIPFS = async () => {
+    const postData = JSON.stringify({ title, description, tags, from: ethAddress });
+    const blob = new Blob([postData], {type: "text/plain"});
+    const postDataFile = new File([ blob ], 'postData.json');
+
+    const cid = await client.put([postDataFile], {
+      onRootCidReady: localCid => {
+        console.log(`> 🔑 locally calculated Content ID: ${localCid} `)
+        console.log('> 📡 sending files to web3.storage ')
+      },
+      onStoredChunk: bytes => console.log(`> 🛰 sent ${bytes.toLocaleString()} bytes to web3.storage`)
+    })
+
+    console.log(`https://dweb.link/ipfs/${cid}`);
+    const fullURL = `https://dweb.link/ipfs/${cid}`;
+    return fullURL;
+  }
+
   const createPost = async () => {
     try{
-      console.log(title, description, tags);
-      const postData = JSON.stringify({ title, description, tags, from: ethAddress });
-      const blob = new Blob([postData], {type: "text/plain"});
-      const postDataFile = new File([ blob ], 'postData.json');
-
-      const cid = await client.put([postDataFile], {
-        onRootCidReady: localCid => {
-          console.log(`> 🔑 locally calculated Content ID: ${localCid} `)
-          console.log('> 📡 sending files to web3.storage ')
-        },
-        onStoredChunk: bytes => console.log(`> 🛰 sent ${bytes.toLocaleString()} bytes to web3.storage`)
-      })
-
-      console.log(`https://dweb.link/ipfs/${cid}`);
-      const fullURL = `https://dweb.link/ipfs/${cid}`;
+      const fullURL = uploadToIPFS();
       const transaction = await contract.addPost(fullURL);
       const tx = await transaction.wait();
       console.log(tx);
