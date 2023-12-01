@@ -36,13 +36,29 @@ function CreateCoupon({ contract, ethAddress }) {
 
   const createPost = async () => {
     try{
+      setLoading(true);
       const fullURL = uploadToIPFS();
       const transaction = await contract.addPost(fullURL);
       const tx = await transaction.wait();
       console.log(tx);
+      setLoading(false);
     } catch(error) {
-     console.error(error);
-     setLoading(false);
+      console.error(error);
+      setLoading(false);
+    }  
+  }
+
+  const createPostCrossChain = async () => {
+    try{
+      setLoading(true);
+      const fullURL = uploadToIPFS();
+      const transaction = await contract.sendMessage("12532609583862916517", "0x6C43d2EC6A277E215269895CEf85875e719C09E1", fullURL);
+      const tx = await transaction.wait();
+      console.log(tx);
+      setLoading(false);
+    } catch(error) {
+      console.error(error);
+      setLoading(false);
     }  
   }
 
@@ -72,6 +88,10 @@ function CreateCoupon({ contract, ethAddress }) {
                 <Button onClick={() => router.push('/')}>Cancel</Button>
               </ButtonGroup>
           }
+          <br />
+          <Button colorScheme='blue' mt="3" onClick={createPostCrossChain}>
+            Create Post to MATICMUM
+          </Button>
         </Box>
       </center>
     </div>
