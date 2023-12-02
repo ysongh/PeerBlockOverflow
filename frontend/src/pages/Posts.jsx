@@ -8,6 +8,7 @@ function Posts({ contract }) {
 
   const [search, setSearch] = useState("");
   const [posts, setPosts] = useState([]);
+  const [message, setMessage] = useState();
 
   useEffect(() => {
     const getPosts = async () => {
@@ -30,6 +31,16 @@ function Posts({ contract }) {
 
     if (contract) getPosts();
   }, [contract])
+
+  useEffect(() => {
+    const getMessage = async () => {
+      const data = await contract.getLastReceivedMessageDetails();
+      console.log(data);
+      setMessage(data);
+    }
+
+    if (contract) getMessage();
+  }, [])
   
   return (
     <Container maxW='1100px'>
@@ -51,6 +62,8 @@ function Posts({ contract }) {
           </Box>
         ))}
       </SimpleGrid>
+      <Text mt="2">{message.messageId}</Text>
+      <Text>{message.text}</Text>
     </Container>
   )
 }
