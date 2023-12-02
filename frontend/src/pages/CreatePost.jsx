@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FormControl, FormLabel, Box, ButtonGroup, Spinner, Input, Textarea, Heading, Button } from '@chakra-ui/react';
 import { Web3Storage } from 'web3.storage';
 
-import { WEB3STORAGE_APIKEY } from '../../keys';
+import { WEB3STORAGE_APIKEY, MUMBAI_CONTRACT_ADDRESS } from '../../keys';
 
 const client = new Web3Storage({ token: WEB3STORAGE_APIKEY });
 
@@ -52,7 +52,7 @@ function CreateCoupon({ contract, ethAddress }) {
     try{
       setLoading(true);
       const fullURL = uploadToIPFS();
-      const transaction = await contract.sendMessage("12532609583862916517", "0x6C43d2EC6A277E215269895CEf85875e719C09E1", fullURL);
+      const transaction = await contract.sendMessage("12532609583862916517", MUMBAI_CONTRACT_ADDRESS, fullURL);
       const tx = await transaction.wait();
       console.log(tx);
       setLoading(false);

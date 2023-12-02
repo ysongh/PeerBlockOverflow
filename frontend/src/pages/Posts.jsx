@@ -8,7 +8,7 @@ function Posts({ contract }) {
 
   const [search, setSearch] = useState("");
   const [posts, setPosts] = useState([]);
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState({});
 
   useEffect(() => {
     const getPosts = async () => {
