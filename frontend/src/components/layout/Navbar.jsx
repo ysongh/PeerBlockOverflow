@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link as ReactLink } from 'react-router-dom';
 import { Container, Box, Flex, Heading, Spacer, Badge, Button, Link } from '@chakra-ui/react';
 import { ethers } from 'ethers';
@@ -6,13 +6,23 @@ import { ethers } from 'ethers';
 import PeerBlockOverflow from "../../artifacts/contracts/PeerBlockOverflow.sol/PeerBlockOverflow.json";
 import { SEPOLIA_CONTRACT_ADDRESS, MUMBAI_CONTRACT_ADDRESS } from '../../../keys';
 
-function Navbar({ ethAddress, setETHAddress, setContract }) {
+function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethProvider }) {
   const [networkName, setnetworkName] = useState("");
+
+  useEffect(() => {
+    const nameResolution = async () => {
+      const address = await ethProvider.lookupAddress(ethAddress);
+      console.log(address);
+    }
+    if (ethProvider && ethAddress) nameResolution();
+  }, [ethProvider])
+  
 
   const connectMetamask = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     setETHAddress(accounts[0]);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+    setethProvider(provider);
     const { name, chainId } = await provider.getNetwork();
     console.log(name, chainId);
     setnetworkName(name);

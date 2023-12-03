@@ -10,14 +10,17 @@ import CreatePost from './pages/CreatePost';
 function App() {
   const [ethAddress, setETHAddress] = useState('');
   const [contract, setContract] = useState(null);
+  const [ethProvider, setethProvider] = useState(null);
   
   return (
     <ChakraProvider>
       <HashRouter>
         <Navbar
           ethAddress={ethAddress}
+          ethProvider={ethProvider}
           setETHAddress={setETHAddress}
-          setContract={setContract} />
+          setContract={setContract}
+          setethProvider={setethProvider} />
         <Routes>
           <Route
             path="/create-post"
