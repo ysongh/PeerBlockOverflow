@@ -15,6 +15,11 @@ function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethPro
       try {
         const name = await ethProvider.lookupAddress(ethAddress);
         setENS(name);
+
+        const resolver = await ethProvider.getResolver(name);
+        if(!resolver) return;
+        const avatar = await resolver.getText("avatar");
+        console.log(avatar);
       } catch (error) {
         console.error(error);
       }
