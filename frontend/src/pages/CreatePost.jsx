@@ -7,7 +7,7 @@ import { WEB3STORAGE_APIKEY, MUMBAI_CONTRACT_ADDRESS } from '../../keys';
 
 const client = new Web3Storage({ token: WEB3STORAGE_APIKEY });
 
-function CreateCoupon({ contract, ethAddress }) {
+function CreatePost({ contract, ethAddress }) {
   const router = useNavigate();
 
   const [title, setTitle] = useState('');
@@ -98,4 +98,4 @@ function CreateCoupon({ contract, ethAddress }) {
   )
 }
 
-export default CreateCoupon;
+export default CreatePost;
