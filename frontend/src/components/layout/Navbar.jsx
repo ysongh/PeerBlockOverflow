@@ -8,13 +8,19 @@ import { SEPOLIA_CONTRACT_ADDRESS, MUMBAI_CONTRACT_ADDRESS } from '../../../keys
 
 function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethProvider }) {
   const [networkName, setnetworkName] = useState("");
+  const [ens, setENS] = useState("");
 
   useEffect(() => {
-    const nameResolution = async () => {
-      const address = await ethProvider.lookupAddress(ethAddress);
-      console.log(address);
+    const getENSname = async () => {
+      try {
+        const name = await ethProvider.lookupAddress(ethAddress);
+        setENS(name);
+      } catch (error) {
+        console.error(error);
+      }
+      
     }
-    if (ethProvider && ethAddress) nameResolution();
+    if (ethProvider && ethAddress) getENSname();
   }, [ethProvider])
   
 
@@ -51,7 +57,7 @@ function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethPro
           <Spacer />
           {networkName && <p><Badge bgColor="#ff99fe" fontSize='.9rem'>{networkName}</Badge></p>}
           <Button onClick={connectMetamask}>
-            {ethAddress ? ethAddress.slice(0, 5) + "..." + ethAddress.slice(37, 42) : 'Connect Wallet'}
+            {ens ? ens : ethAddress ? ethAddress.slice(0, 5) + "..." + ethAddress.slice(37, 42) : 'Connect Wallet'}
           </Button>
         </Flex>
       </Container>
