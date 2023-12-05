@@ -79,17 +79,17 @@ contract PeerBlockOverflow is OwnerIsCreator, CCIPReceiver {
     /// @dev Assumes your contract has sufficient LINK.
     /// @param destinationChainSelector The identifier (aka selector) for the destination blockchain.
     /// @param receiver The address of the recipient on the destination blockchain.
-    /// @param text The string text to be sent.
+    /// @param cid The string cid to be sent.
     /// @return messageId The ID of the message that was sent.
-    function sendMessage(
+    function addPostCrosschain(
         uint64 destinationChainSelector,
         address receiver,
-        string calldata text
+        string calldata cid
     ) external onlyOwner returns (bytes32 messageId) {
         // Create an EVM2AnyMessage struct in memory with necessary information for sending a cross-chain message
         Client.EVM2AnyMessage memory evm2AnyMessage = Client.EVM2AnyMessage({
             receiver: abi.encode(receiver), // ABI-encoded receiver address
-            data: abi.encode(text), // ABI-encoded string
+            data: abi.encode(cid), // ABI-encoded string
             tokenAmounts: new Client.EVMTokenAmount[](0), // Empty array indicating no tokens are being sent
             extraArgs: Client._argsToBytes(
                 // Additional arguments, setting gas limit and non-strict sequencing mode
@@ -119,7 +119,7 @@ contract PeerBlockOverflow is OwnerIsCreator, CCIPReceiver {
             messageId,
             destinationChainSelector,
             receiver,
-            text,
+            cid,
             address(s_linkToken),
             fees
         );
@@ -134,6 +134,10 @@ contract PeerBlockOverflow is OwnerIsCreator, CCIPReceiver {
     ) internal override {
         s_lastReceivedMessageId = any2EvmMessage.messageId; // fetch the messageId
         s_lastReceivedText = abi.decode(any2EvmMessage.data, (string)); // abi-decoding of the sent text
+
+        posts.push(Post(postCount, s_lastReceivedText, address(0)));
+        postCount++;
+        emit NewPost(postCount, s_lastReceivedText, address(0));
 
         emit MessageReceived(
             any2EvmMessage.messageId,

@@ -52,7 +52,7 @@ function CreatePost({ contract, ethAddress }) {
     try{
       setLoading(true);
       const fullURL = uploadToIPFS();
-      const transaction = await contract.sendMessage("12532609583862916517", MUMBAI_CONTRACT_ADDRESS, fullURL);
+      const transaction = await contract.addPostCrosschain("12532609583862916517", MUMBAI_CONTRACT_ADDRESS, fullURL);
       const tx = await transaction.wait();
       console.log(tx);
       setLoading(false);
