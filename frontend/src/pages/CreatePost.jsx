@@ -89,9 +89,9 @@ function CreatePost({ contract, ethAddress }) {
               </ButtonGroup>
           }
           <br />
-          <Button colorScheme='blue' mt="3" onClick={createPostCrossChain}>
+          {!loading && <Button colorScheme='blue' mt="3" onClick={createPostCrossChain}>
             Create Post to MATICMUM
-          </Button>
+          </Button>}
         </Box>
       </center>
     </div>
