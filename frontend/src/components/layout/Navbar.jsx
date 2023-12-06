@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link as ReactLink } from 'react-router-dom';
-import { Container, Box, Flex, Heading, Spacer, Badge, Button, Link } from '@chakra-ui/react';
+import { Container, Box, Flex, Heading, Spacer, Badge, Avatar, Button, Link } from '@chakra-ui/react';
 import { ethers } from 'ethers';
 
 import PeerBlockOverflow from "../../artifacts/contracts/PeerBlockOverflow.sol/PeerBlockOverflow.json";
@@ -9,6 +9,7 @@ import { SEPOLIA_CONTRACT_ADDRESS, MUMBAI_CONTRACT_ADDRESS } from '../../../keys
 function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethProvider }) {
   const [networkName, setnetworkName] = useState("");
   const [ens, setENS] = useState("");
+  const [photo, setPhoto] = useState("");
 
   useEffect(() => {
     const getENSname = async () => {
@@ -19,7 +20,7 @@ function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethPro
         const resolver = await ethProvider.getResolver(name);
         if(!resolver) return;
         const avatar = await resolver.getText("avatar");
-        console.log(avatar);
+        setPhoto(avatar);
       } catch (error) {
         console.error(error);
       }
@@ -61,7 +62,7 @@ function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethPro
           <Link as={ReactLink} to="/create-post">Create Post</Link>
           <Spacer />
           {networkName && <p><Badge bgColor="#ff99fe" fontSize='.9rem'>{networkName}</Badge></p>}
-          <Button onClick={connectMetamask}>
+          <Button leftIcon={<Avatar src={photo} size="sm" />} onClick={connectMetamask}>
             {ens ? ens : ethAddress ? ethAddress.slice(0, 5) + "..." + ethAddress.slice(37, 42) : 'Connect Wallet'}
           </Button>
         </Flex>
