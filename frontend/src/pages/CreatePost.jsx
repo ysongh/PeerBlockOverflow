@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormControl, FormLabel, Box, ButtonGroup, Spinner, Input, Textarea, Heading, Button } from '@chakra-ui/react';
+import { FormControl, FormLabel, Box, ButtonGroup, Spinner, Select, Input, Textarea, Heading, Button } from '@chakra-ui/react';
 import { Web3Storage } from 'web3.storage';
 
 import { WEB3STORAGE_APIKEY, MUMBAI_CONTRACT_ADDRESS } from '../../keys';
@@ -79,6 +79,14 @@ function CreatePost({ contract, ethAddress }) {
             <FormLabel htmlFor='tag'>Tag</FormLabel>
             <Input id='tag' onChange={(e) => setTags(e.target.value)}/>
           </FormControl>
+          <FormControl mb='3'>
+            <FormLabel htmlFor='chain'>Destination Chain</FormLabel>
+            <Select placeholder='Select Destination Chain'>
+              <option value='SEPOLIA'>SEPOLIA</option>
+              <option value='MATICMUM'>MATICMUM</option>
+            </Select>
+          </FormControl>
+          
           {loading
             ? <Spinner color='blue' />
             : <ButtonGroup spacing='6'>
