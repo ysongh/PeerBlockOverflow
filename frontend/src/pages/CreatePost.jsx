@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { FormControl, FormLabel, Box, ButtonGroup, Spinner, Select, Input, Textarea, Heading, Button } from '@chakra-ui/react';
 import { Web3Storage } from 'web3.storage';
 
-import { WEB3STORAGE_APIKEY, MUMBAI_CONTRACT_ADDRESS } from '../../keys';
-
+import { WEB3STORAGE_APIKEY } from '../../keys';
+import { contractData } from '../../contractData';
 const client = new Web3Storage({ token: WEB3STORAGE_APIKEY });
 
 function CreatePost({ contract, ethAddress, ethProvider }) {
@@ -45,8 +45,8 @@ function CreatePost({ contract, ethAddress, ethProvider }) {
         const tx = await transaction.wait();
         console.log(tx);
       }
-      else if (targetChain === "80001") {
-        const transaction = await contract.addPostCrosschain("12532609583862916517", MUMBAI_CONTRACT_ADDRESS, fullURL);
+      else {
+        const transaction = await contract.addPostCrosschain(contractData[targetChain].destinationChainSelector, contractData[targetChain].contractAddress, fullURL);
         const tx = await transaction.wait();
         console.log(tx);
       }
