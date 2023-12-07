@@ -7,12 +7,13 @@ import { WEB3STORAGE_APIKEY, MUMBAI_CONTRACT_ADDRESS } from '../../keys';
 
 const client = new Web3Storage({ token: WEB3STORAGE_APIKEY });
 
-function CreatePost({ contract, ethAddress }) {
+function CreatePost({ contract, ethAddress, ethProvider }) {
   const router = useNavigate();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState('');
+  const [targetChain, setTargetChain] = useState('');
 
   const [loading, setLoading] = useState(false);
 
@@ -38,23 +39,17 @@ function CreatePost({ contract, ethAddress }) {
     try{
       setLoading(true);
       const fullURL = uploadToIPFS();
-      const transaction = await contract.addPost(fullURL);
-      const tx = await transaction.wait();
-      console.log(tx);
-      setLoading(false);
-    } catch(error) {
-      console.error(error);
-      setLoading(false);
-    }  
-  }
-
-  const createPostCrossChain = async () => {
-    try{
-      setLoading(true);
-      const fullURL = uploadToIPFS();
-      const transaction = await contract.addPostCrosschain("12532609583862916517", MUMBAI_CONTRACT_ADDRESS, fullURL);
-      const tx = await transaction.wait();
-      console.log(tx);
+      const { chainId } = await ethProvider.getNetwork();
+      if (chainId.toString() === targetChain) {
+        const transaction = await contract.addPost(fullURL);
+        const tx = await transaction.wait();
+        console.log(tx);
+      }
+      else if (targetChain === "80001") {
+        const transaction = await contract.addPostCrosschain("12532609583862916517", MUMBAI_CONTRACT_ADDRESS, fullURL);
+        const tx = await transaction.wait();
+        console.log(tx);
+      }
       setLoading(false);
     } catch(error) {
       console.error(error);
@@ -81,9 +76,9 @@ function CreatePost({ contract, ethAddress }) {
           </FormControl>
           <FormControl mb='3'>
             <FormLabel htmlFor='chain'>Destination Chain</FormLabel>
-            <Select placeholder='Select Destination Chain'>
-              <option value='SEPOLIA'>SEPOLIA</option>
-              <option value='MATICMUM'>MATICMUM</option>
+            <Select placeholder='Select Destination Chain' onChange={(e) => setTargetChain(e.target.value)}>
+              <option value='11155111'>SEPOLIA</option>
+              <option value='80001'>MATICMUM</option>
             </Select>
           </FormControl>
           
@@ -96,10 +91,6 @@ function CreatePost({ contract, ethAddress }) {
                 <Button onClick={() => router.push('/')}>Cancel</Button>
               </ButtonGroup>
           }
-          <br />
-          {!loading && <Button colorScheme='blue' mt="3" onClick={createPostCrossChain}>
-            Create Post to MATICMUM
-          </Button>}
         </Box>
       </center>
     </div>

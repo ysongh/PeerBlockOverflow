@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route
             path="/create-post"
-            element={<CreatePost contract={contract} ethAddress={ethAddress} />} />
+            element={<CreatePost contract={contract} ethAddress={ethAddress} ethProvider={ethProvider} />} />
           <Route
             path="/post/:id"
             element={<PostDetail contract={contract} ethAddress={ethAddress} />} />
