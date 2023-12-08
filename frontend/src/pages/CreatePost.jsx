@@ -88,7 +88,7 @@ function CreatePost({ contract, ethAddress, ethProvider }) {
                 <Button colorScheme='blue' onClick={createPost}>
                   Create
                 </Button>
-                <Button onClick={() => router.push('/')}>Cancel</Button>
+                <Button onClick={() => router('/posts')}>Cancel</Button>
               </ButtonGroup>
           }
         </Box>

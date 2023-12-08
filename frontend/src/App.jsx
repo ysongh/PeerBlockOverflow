@@ -6,6 +6,7 @@ import Navbar from './components/layout/Navbar';
 import Posts from './pages/Posts';
 import PostDetail from './pages/PostDetail';
 import CreatePost from './pages/CreatePost';
+import Home from './pages/Home';
 
 function App() {
   const [ethAddress, setETHAddress] = useState('');
@@ -29,8 +30,11 @@ function App() {
             path="/post/:id"
             element={<PostDetail contract={contract} ethAddress={ethAddress} />} />
           <Route
-            path="/"
+            path="/posts"
             element={<Posts contract={contract} />} />
+          <Route
+            path="/"
+            element={<Home />} />
         </Routes>
       </HashRouter>
     </ChakraProvider>

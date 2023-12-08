@@ -59,6 +59,7 @@ function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethPro
             </Link>
           </Box>
           <Link as={ReactLink} to="/">Home</Link>
+          <Link as={ReactLink} to="/posts">Posts</Link>
           <Link as={ReactLink} to="/create-post">Create Post</Link>
           <Spacer />
           {networkName && <p><Badge bgColor="#ff99fe" fontSize='.9rem'>{networkName}</Badge></p>}
