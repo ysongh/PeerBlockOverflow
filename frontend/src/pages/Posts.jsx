@@ -51,7 +51,7 @@ function Posts({ contract }) {
           <SearchIcon />
         </InputRightElement>
       </InputGroup>
-      <SimpleGrid minChildWidth='300px' spacing='5px'>
+      <SimpleGrid columns={{sm: 1, md: 3}} spacing='40px'>
         {posts.map(p => (
           <Box key={p.id} borderWidth='1px' borderRadius='lg' borderColor='blue.400' overflow='hidden' p='5' mt='5'>
             <Heading textAlign="center" fontSize="3xl" mb="4">{p.title}</Heading>
