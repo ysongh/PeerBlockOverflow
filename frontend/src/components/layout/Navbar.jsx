@@ -51,12 +51,12 @@ function Navbar({ ethAddress, setETHAddress, setContract, setethProvider }) {
   }
 
   return (
-    <Box p={2}>
+    <Box bg="blue.100">
       <Container maxW='1100px'>
         <Flex minWidth='max-content' alignItems='center' gap='2'>
           <Box mr="4">
             <Link as={ReactLink} to="/">
-              <Heading color="blue.400" mt="3" mb="5">PeerBlock Overflow</Heading>
+              <Heading fontSize="30px" color="blue.400" mt="3" mb="5">PeerBlock Overflow</Heading>
             </Link>
           </Box>
           <Link as={ReactLink} to="/">Home</Link>
