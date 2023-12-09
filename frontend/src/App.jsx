@@ -18,7 +18,6 @@ function App() {
       <HashRouter>
         <Navbar
           ethAddress={ethAddress}
-          ethProvider={ethProvider}
           setETHAddress={setETHAddress}
           setContract={setContract}
           setethProvider={setethProvider} />

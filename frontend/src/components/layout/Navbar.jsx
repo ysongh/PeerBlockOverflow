@@ -4,9 +4,9 @@ import { Container, Box, Flex, Heading, Spacer, Badge, Avatar, Button, Link } fr
 import { ethers } from 'ethers';
 
 import PeerBlockOverflow from "../../artifacts/contracts/PeerBlockOverflow.sol/PeerBlockOverflow.json";
-import { SEPOLIA_CONTRACT_ADDRESS, MUMBAI_CONTRACT_ADDRESS } from '../../../keys';
+import { SEPOLIA_CONTRACT_ADDRESS, MUMBAI_CONTRACT_ADDRESS, GOERLI_RPC } from '../../../keys';
 
-function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethProvider }) {
+function Navbar({ ethAddress, setETHAddress, setContract, setethProvider }) {
   const [networkName, setnetworkName] = useState("");
   const [ens, setENS] = useState("");
   const [photo, setPhoto] = useState("");
@@ -14,10 +14,11 @@ function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethPro
   useEffect(() => {
     const getENSname = async () => {
       try {
-        const name = await ethProvider.lookupAddress(ethAddress);
+        const provider = new ethers.providers.JsonRpcProvider(GOERLI_RPC, 'goerli');
+        const name = await provider.lookupAddress(ethAddress);
         setENS(name);
 
-        const resolver = await ethProvider.getResolver(name);
+        const resolver = await provider.getResolver(name);
         if(!resolver) return;
         const avatar = await resolver.getText("avatar");
         setPhoto(avatar);
@@ -26,8 +27,8 @@ function Navbar({ ethAddress, ethProvider, setETHAddress, setContract, setethPro
       }
       
     }
-    if (ethProvider && ethAddress) getENSname();
-  }, [ethProvider])
+    if (ethAddress) getENSname();
+  }, [ethAddress])
   
 
   const connectMetamask = async () => {
