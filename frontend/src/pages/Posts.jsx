@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, SimpleGrid, Box, Heading, InputGroup, Input, InputRightElement, Text, Tag, Button } from '@chakra-ui/react';
+import { Container, Stack, Box, Link, InputGroup, Input, InputRightElement, Flex, Spacer, Heading, Text, Tag } from '@chakra-ui/react';
 import { SearchIcon } from "@chakra-ui/icons";
 
 function Posts({ contract }) {
@@ -51,17 +51,25 @@ function Posts({ contract }) {
           <SearchIcon />
         </InputRightElement>
       </InputGroup>
-      <SimpleGrid columns={{sm: 1, md: 3}} spacing='40px'>
+      <Stack spacing={4} mt={8}>
         {posts.map(p => (
-          <Box key={p.id} borderWidth='1px' borderRadius='lg' borderColor='blue.400' overflow='hidden' p='5' mt='5'>
-            <Heading textAlign="center" fontSize="3xl" mb="4">{p.title}</Heading>
-            <Text textAlign="center" fontSize="xl" mb="4">{p.description}</Text>
-            <Tag>{p.tags}</Tag>
-            <br />
-            <Button colorScheme='blue' mt="4" onClick={() => navigate(`/post/${p.id}`)}>View</Button>
+          <Box key={p.id} p={4} borderWidth="1px" borderRadius="lg">
+            <Link fontSize="30px" color="blue.700" fontWeight="bold" mb={2} onClick={() => navigate(`/post/${p.id}`)}>
+              {p.title}
+            </Link>
+            <Text fontSize="sm" color="gray.600">
+              {p.description}
+            </Text>
+            <Flex>
+              <Tag mt="2">{p.tags}</Tag>
+              <Spacer />
+              <Text fontSize="sm" color="gray.600" mt="3">
+                Asked by {p.from}
+              </Text>
+            </Flex>
           </Box>
         ))}
-      </SimpleGrid>
+      </Stack>
       <Text mt="2">{message.messageId}</Text>
       <Text>{message.text}</Text>
     </Container>
