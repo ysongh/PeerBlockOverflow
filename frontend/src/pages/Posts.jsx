@@ -70,8 +70,8 @@ function Posts({ contract }) {
           </Box>
         ))}
       </Stack>
-      <Text mt="2">{message.messageId}</Text>
-      <Text>{message.text}</Text>
+      {/* <Text mt="2">{message.messageId}</Text>
+      <Text>{message.text}</Text> */}
     </Container>
   )
 }
