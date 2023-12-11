@@ -4,6 +4,7 @@ import { Container, Flex, Box, Heading, Text, Tag, FormControl, FormLabel, Card,
 import { Web3Storage } from 'web3.storage';
 
 import { WEB3STORAGE_APIKEY } from '../../keys';
+import { formatAddress } from "../../utils/format";
 
 const client = new Web3Storage({ token: WEB3STORAGE_APIKEY });
 
@@ -80,7 +81,7 @@ function PostDetail({ contract, ethAddress }) {
           <p>{post.description}</p>
           <br />
           <Tag>{post.tags}</Tag>
-          <Text mt="2">{post.from}</Text>
+          <Text mt="2">{formatAddress(post.from)}</Text>
         </Box>
         <Box flex={1}>
           <FormControl mb='3'>

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Container, Stack, Box, Link, InputGroup, Input, InputRightElement, Flex, Spacer, Heading, Text, Tag } from '@chakra-ui/react';
 import { SearchIcon } from "@chakra-ui/icons";
 
+import { formatAddress } from "../../utils/format";
+
 function Posts({ contract }) {
   const navigate = useNavigate();
 
@@ -64,7 +66,7 @@ function Posts({ contract }) {
               <Tag mt="2">{p.tags}</Tag>
               <Spacer />
               <Text fontSize="sm" color="gray.600" mt="3">
-                Asked by {p.from}
+                Asked by {formatAddress(p.from)}
               </Text>
             </Flex>
           </Box>
